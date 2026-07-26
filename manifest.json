@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "VNR Attendance Companion",
+  "version": "1.0",
+  "description": "Tracks attendance and predicts safe bunks.",
+
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+
+  "host_permissions": [
+    "https://automation.vnrvjiet.ac.in/*"
+  ],
+
+  "action": {
+    "default_popup": "popup.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://automation.vnrvjiet.ac.in/*"
+      ],
+      "js": ["content.js"]
+    }
+  ]
+}

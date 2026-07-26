@@ -1,0 +1,162 @@
+body {
+
+  width: 340px;
+
+  padding: 15px;
+
+  font-family: Arial, sans-serif;
+
+  background:
+    linear-gradient(
+      135deg,
+      #1e1e1e,
+      #2b2b2b
+    );
+
+  color: white;
+
+}
+
+.mainCard {
+
+  background:
+    linear-gradient(
+      135deg,
+      #2f2f2f,
+      #1f1f1f
+    );
+
+  border-radius: 14px;
+
+  padding: 16px;
+
+  margin-bottom: 12px;
+
+  box-shadow:
+    0 0 10px rgba(0,0,0,0.3);
+
+}
+
+.title {
+
+  margin-top: 0;
+
+  font-size: 24px;
+
+  text-align: center;
+
+}
+
+#attendanceBox {
+
+  text-align: center;
+
+}
+
+.bigAttendance {
+
+  font-size: 42px;
+
+  font-weight: bold;
+
+  margin: 10px 0;
+
+}
+
+.safeRange {
+
+  font-size: 30px;
+
+  font-weight: bold;
+
+  color: #00ff99;
+
+}
+
+.troll {
+
+  margin-top: 10px;
+
+  font-size: 14px;
+
+  opacity: 0.9;
+
+  line-height: 1.5;
+
+}
+
+input {
+
+  width: 100%;
+
+  padding: 10px;
+
+  margin-top: 5px;
+
+  margin-bottom: 10px;
+
+  border-radius: 8px;
+
+  border: none;
+
+  box-sizing: border-box;
+
+}
+
+button {
+
+  width: 100%;
+
+  padding: 10px;
+
+  border: none;
+
+  background: #00cc88;
+
+  color: black;
+
+  font-weight: bold;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  margin-top: 5px;
+
+}
+
+details {
+
+  background: #2a2a2a;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  margin-bottom: 10px;
+
+}
+
+summary {
+
+  cursor: pointer;
+
+  font-weight: bold;
+
+}
+
+.dateEntry {
+
+  margin-bottom: 10px;
+
+}
+
+#projectionResult {
+
+  margin-top: 10px;
+
+  text-align: center;
+
+  font-size: 18px;
+
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>
+    VNR Attendance
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  >
+
+</head>
+
+<body>
+
+  <h2>
+    VNR Attendance
+  </h2>
+
+  <div id="attendanceBox">
+    Loading...
+  </div>
+
+  <hr>
+
+  <details>
+
+    <summary>
+      Projection Simulator
+    </summary>
+
+    <br>
+
+    <label>
+      Periods To Bunk
+    </label>
+
+    <input
+      type="number"
+      id="bunkInput"
+      min="0"
+      placeholder="Example: 10"
+    >
+
+    <div id="projectionResult">
+
+    </div>
+
+  </details>
+
+  <hr>
+
+  <details>
+
+    <summary>
+      Settings
+    </summary>
+
+    <br>
+
+    <label>
+      Semester End Date
+    </label>
+
+    <input
+      type="date"
+      id="endDate"
+    >
+
+    <br><br>
+
+    <label>
+      Added Holidays
+    </label>
+
+    <div id="holidayContainer">
+
+    </div>
+
+    <button id="addHolidayBtn">
+      + Add Holiday
+    </button>
+
+    <br><br>
+
+    <label>
+      Extra Working Days
+    </label>
+
+    <div id="workingDayContainer">
+
+    </div>
+
+    <button id="addWorkingBtn">
+      + Add Working Day
+    </button>
+
+    <br><br>
+
+    <button id="saveBtn">
+      Save Settings
+    </button>
+
+  </details>
+
+  <script src="popup.js"></script>
+
+</body>
+
+</html>
