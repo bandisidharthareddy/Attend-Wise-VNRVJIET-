@@ -1,191 +1,94 @@
-# Attend-Wise-VNRVJIET-
+# Attend-Wise: VNR VJIET Attendance Companion
 
-# 🎓 Attendance Companion
-
-> A Chrome extension that helps students understand, predict, and manage their attendance using mathematical calculations based on their timetable and academic calendar.
-
----
+A lightweight Manifest V3 Chrome extension designed to help students at VNR VJIET calculate, predict, and manage attendance directly alongside the student portal.
 
 ## Overview
 
-Attendance Companion is a lightweight Chrome extension that works alongside the VNR VJIET Student Portal to provide insights that the portal itself doesn't.
+The standard college portal displays your current attendance figures, but does not provide forward-looking insights such as remaining classes in the semester, how many classes you can afford to miss, or what your attendance will look like before you take time off.
 
-Instead of simply displaying your current attendance, the extension estimates how your attendance will change throughout the semester based on your timetable and academic calendar.
+**Attend-Wise** runs directly inside the browser. It reads your attendance figures and weekly timetable from the active portal tab, factors in your semester calendar, holidays, and extra working days, and calculates safe bunk allowances and attendance projections.
 
-Using your current attendance, weekly class schedule, semester duration, holidays, and additional working days, it predicts how many classes remain, calculates safe bunk limits, and lets you simulate future attendance before deciding to miss classes.
-
-Everything is calculated locally inside your browser using straightforward mathematics and date-based logic.
-
----
+All computations are executed locally in the browser. No login credentials or attendance records are transmitted to external servers.
 
 ## Features
 
-### 📊 Attendance Dashboard
+- **Portal Data Extraction**: Automatically extracts attended periods, total periods, and current attendance percentage directly from the portal DOM using regex pattern matching.
+- **Timetable Parsing**: Scrapes the weekly timetable schedule from the portal table, automatically excluding non-instructional slots (e.g., LIBRARY, ECA, CCA, MTP) to calculate true weekly period loads.
+- **Calendar Customization**: Allows students to configure the semester end date, add custom holidays, and define extra working days (stored persistently via `chrome.storage.local`).
+- **Safe Bunk Calculator**: Calculates the safe margin of classes that can be missed while remaining comfortably above the college's 75% attendance threshold.
+- **Interactive Attendance Simulator**: Provides an interactive bunk slider that lets students simulate missing $N$ future periods and immediately view the projected attendance percentage.
+- **Contextual Status Commentary**: Features a collection of humorous Telugu commentary messages tailored to different attendance brackets (e.g., >90%, 80-90%, 75-80%, <75%).
 
-* Displays current attendance percentage.
-* Reads attendance directly from the student portal.
-* Shows your attendance at a glance.
+## Tech Stack
 
----
-
-### 📅 Automatic Timetable Analysis
-
-The extension analyses your weekly timetable to determine:
-
-* Number of classes each weekday
-* Weekly academic load
-* Remaining instructional periods in the semester
-
-Unlike generic attendance calculators, predictions are based on your actual class schedule.
-
----
-
-### 📆 Semester-Based Prediction
-
-Attendance calculations consider:
-
-* Semester end date
-* Weekly timetable
-* Sundays (excluded automatically)
-* User-defined holidays
-* Extra working days
-
-This allows predictions to adapt whenever the academic calendar changes.
-
----
-
-### 📈 Safe Bunk Calculator
-
-Rather than showing only the theoretical maximum number of classes you can miss, the extension recommends a practical safe range that leaves room for unexpected absences.
-
----
-
-### 🔮 Attendance Simulator
-
-Experiment with different numbers of future bunks to instantly see:
-
-* Projected attendance percentage
-* Impact on eligibility
-* Remaining attendance margin
-
-This helps students make informed decisions before skipping classes.
-
----
-
-### ⚙️ Custom Academic Calendar
-
-Users can:
-
-* Set the semester end date
-* Add holidays
-* Remove holidays
-* Add extra working days
-* Update the calendar whenever the college schedule changes
-
----
-
-### 😂 Fun Messages
-
-To make attendance checking a little less boring, the extension includes a collection of humorous Telugu messages that change depending on your attendance status.
-
----
+- **Platform**: Chrome Extension Manifest V3
+- **Languages**: Vanilla JavaScript (ES6+), HTML5, CSS3
+- **Chrome APIs**: `chrome.tabs`, `chrome.scripting`, `chrome.storage.local`
 
 ## How It Works
 
-```
-Current Attendance
-        │
-        ▼
-Read Weekly Timetable
-        │
-        ▼
-Calculate Remaining Teaching Days
-        │
-        ▼
-Exclude Sundays
-        │
-        ▼
-Apply Holidays
-        │
-        ▼
-Include Extra Working Days
-        │
-        ▼
-Estimate Remaining Periods
-        │
-        ▼
-Calculate Safe Bunk Limit
-        │
-        ▼
-Generate Attendance Projection
+```text
+VNR Student Portal DOM
+         │
+         ▼
+[Script Injection via chrome.scripting]
+ ├── Regex match: Attended / Total / Percentage
+ └── Parse weekly timetable table (filters out non-instructional slots)
+         │
+         ▼
+[Date & Schedule Computation]
+ ├── Exclude Sundays & user holidays
+ ├── Include extra scheduled working days
+ └── Estimate remaining instructional periods
+         │
+         ▼
+[Outputs in Extension Popup]
+ ├── Current percentage display
+ ├── Safe bunk threshold (to preserve >= 75%)
+ └── Interactive bunk slider simulator with contextual Telugu messages
 ```
 
----
+## Project Structure
 
-## Technology
-
-* JavaScript
-* HTML5
-* CSS3
-* Chrome Extension Manifest V3
-* Chrome Storage API
-* Chrome Scripting API
-
-No backend services.
-
-No external APIs.
-
-No cloud processing.
-
-Everything runs locally.
-
----
-
-## Installation
-
-1. Clone this repository.
-
-```bash
-git clone https://github.com/yourusername/attendance-companion.git
+```text
+Attend-Wise-VNRVJIET-/
+├── manifest.json   # Chrome extension configuration (Manifest V3)
+├── content.js      # Content script
+├── popup.html      # Popup interface layout
+├── popup.js        # DOM extraction, calendar math, simulation & storage logic
+├── styles.css      # Popup styling and responsive layout
+└── README.md
 ```
 
-2. Open Chrome.
+## Installation & Setup
 
-3. Navigate to:
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/bandisidharthareddy/Attend-Wise-VNRVJIET-.git
+   cd Attend-Wise-VNRVJIET-
+   ```
 
-```
-chrome://extensions
-```
+2. Open Google Chrome and navigate to:
+   ```text
+   chrome://extensions
+   ```
 
-4. Enable **Developer Mode**.
+3. Enable **Developer Mode** using the toggle switch in the top right corner.
 
-5. Click **Load unpacked**.
+4. Click **Load unpacked** in the top left corner.
 
-6. Select this project folder.
+5. Select the `Attend-Wise-VNRVJIET-` folder.
 
-7. Open the VNR Student Portal.
+6. Log in to the [VNR Student Automation Portal](https://automation.vnrvjiet.ac.in).
 
----
-
-## Future Improvements
-
-* Subject-wise attendance analysis
-* Attendance history graphs
-* Calendar integration
-* Automatic academic calendar import
-* Attendance notifications
-* Multiple college support
-
----
+7. Click the **Attend-Wise** extension icon in your Chrome toolbar to open the dashboard.
 
 ## Disclaimer
 
-Attendance Companion is an independent student-developed project.
+Attend-Wise is an independent, student-developed open-source utility. It is **not affiliated with or endorsed by VNR VJIET**. The extension operates strictly client-side on the user's active session and does not alter any official college records.
 
-It is **not affiliated with or endorsed by VNR VJIET**.
+## Author
 
-The extension only reads information already visible to the logged-in user and performs all calculations locally inside the browser. It does not modify attendance records or communicate with external servers.
-
----
-
-### Built for students who prefer planning ahead instead of calculating attendance after every bunk.
+Bandi Sidhartha Reddy  
+- GitHub: [bandisidharthareddy](https://github.com/bandisidharthareddy)  
+- LinkedIn: [Bandi Sidhartha Reddy](https://www.linkedin.com/in/bandisidharthareddy/)
